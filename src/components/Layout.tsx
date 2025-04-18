@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { auth, signOut } from "@/lib/firebase";
@@ -26,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex flex-col md:flex-row md:items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">
               <Leaf className="mr-2" />
-              <Link to="/" className="text-2xl font-bold">EcoQuery Hub</Link>
+              <Link to="/" className="text-2xl font-bold">Eco Code</Link>
             </div>
             <nav className="flex flex-wrap gap-2 md:gap-4">
               <Link to="/" className={`px-3 py-2 rounded hover:bg-white/10 transition ${location.pathname === "/" ? "bg-white/20" : ""}`}>

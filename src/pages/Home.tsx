@@ -13,7 +13,7 @@ const Home = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Smart Search for Environmental Standards</h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Searching environmental and industrial standards is time-consuming. 
-            Find relevant codes in seconds using smart search.
+            Find relevant codes in seconds using smart search with Eco Code.
           </p>
           <Link to="/search">
             <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 px-8">
