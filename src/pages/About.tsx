@@ -12,10 +12,10 @@ const About = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <section className="mb-16">
-            <h1 className="text-4xl font-bold mb-6 text-eco-text">About EcoQuery Hub</h1>
+            <h1 className="text-4xl font-bold mb-6 text-eco-text">About Eco Code</h1>
             <div className="space-y-6 text-eco-textLight">
               <p className="text-lg">
-                EcoQuery Hub is a smart search tool designed to help environmental engineers, 
+                Eco Code is a smart search tool designed to help environmental engineers, 
                 industrial managers, researchers, and policymakers quickly find relevant environmental 
                 and industrial standards, codes, and regulations.
               </p>
@@ -25,7 +25,7 @@ const About = () => {
                 efficiency with environmental responsibility.
               </p>
               <p>
-                Using advanced natural language processing and semantic search technology, EcoQuery Hub 
+                Using advanced natural language processing and semantic search technology, Eco Code 
                 understands the context of your questions and retrieves the most relevant standards and 
                 guidelines from a comprehensive database of environmental and industrial regulations.
               </p>

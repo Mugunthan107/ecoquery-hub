@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
@@ -7,8 +6,7 @@ import { Search, Database, FileText, BarChart3 } from "lucide-react";
 const Home = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#2E7D32] to-[#2E7D32]/90 text-white py-20">
+      <section className="bg-gradient-to-br from-[#2E7D32] to-[#2E7D32]/90 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Smart Search for Environmental Standards</h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -23,10 +21,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-[#212121]">How EcoQuery Hub Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-[#212121]">How Eco Code Works</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-[#F5F5F5] p-6 rounded-lg shadow-md">
@@ -62,7 +59,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Use Cases Section */}
       <section className="py-16 bg-eco-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12 text-[#212121]">Who Can Benefit</h2>
@@ -103,7 +99,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-12 bg-[#424242] text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">

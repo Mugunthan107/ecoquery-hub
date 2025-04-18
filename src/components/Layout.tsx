@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { auth, signOut } from "@/lib/firebase";
@@ -21,16 +20,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] to-white flex flex-col">
-      <header className="bg-gradient-to-r from-eco-green to-[#1B5E20] text-white shadow-lg">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-gradient-to-r from-eco-green to-[#1B5E20] text-white shadow-lg py-3">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between">
-            <div className="flex items-center mb-4 md:mb-0 space-x-2">
-              <Leaf className="h-8 w-8 animate-pulse" />
-              <Link to="/" className="text-2xl font-bold tracking-tight hover:text-white/90 transition-colors">
+            <div className="flex items-center mb-2 md:mb-0 space-x-2">
+              <Leaf className="h-6 w-6 animate-pulse" />
+              <Link to="/" className="text-xl font-bold tracking-tight hover:text-white/90 transition-colors">
                 Eco Code
               </Link>
             </div>
-            <nav className="flex flex-wrap gap-3 md:gap-4">
+            <nav className="flex flex-wrap gap-2 md:gap-3">
               <Link to="/" 
                 className={`nav-link ${location.pathname === "/" ? "active-nav-link" : ""}`}>
                 Home
@@ -69,17 +68,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
-      <footer className="bg-[#424242] text-white py-8 mt-auto">
+      <main className="flex-grow container mx-auto px-4 py-6">{children}</main>
+      <footer className="bg-[#424242] text-white py-4 mt-auto">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2">
             <div>
-              <p className="text-sm text-white/80">&copy; 2025 EcoQuery Hub. All rights reserved.</p>
+              <p className="text-xs text-white/80">©Eco Code by TecXperts</p>
             </div>
-            <div className="flex gap-6">
-              <a href="#" className="text-white/60 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="text-white/60 hover:text-white transition-colors">Contact Us</a>
+            <div className="flex gap-4">
+              <a href="#" className="text-white/60 hover:text-white transition-colors text-xs">Privacy Policy</a>
+              <a href="#" className="text-white/60 hover:text-white transition-colors text-xs">Terms of Service</a>
+              <a href="#" className="text-white/60 hover:text-white transition-colors text-xs">Contact Us</a>
             </div>
           </div>
         </div>
