@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Layout } from "@/components/Layout";
 import { Input } from "@/components/ui/input";
@@ -112,7 +113,7 @@ const Search = () => {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  onFocus={() => query.length > 2 && setSuggestions.length > 0 && setShowSuggestions(true)}
+                  onFocus={() => query.length > 2 && suggestions.length > 0 && setShowSuggestions(true)}
                 />
                 <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#616161] h-5 w-5" />
               </div>
@@ -243,7 +244,7 @@ const Search = () => {
           ) : query && !isSearching ? (
             <div className="text-center py-8 space-y-4">
               <div className="bg-eco-background rounded-lg p-8 border border-eco-green/20">
-                <Search className="h-12 w-12 text-eco-green/50 mx-auto mb-4" />
+                <SearchIcon className="h-12 w-12 text-eco-green/50 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No matching standards found</h3>
                 <p className="text-eco-textLight max-w-md mx-auto">
                   Try using different keywords, checking your spelling, or browsing our complete collection of standards.
