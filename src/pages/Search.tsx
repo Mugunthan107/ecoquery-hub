@@ -1,11 +1,10 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Layout } from "@/components/Layout";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search as SearchIcon, Bookmark, FileText, Clock } from "lucide-react";
+import { Search as SearchIcon, Bookmark, FileText, Clock, Copy, Book } from "lucide-react";
 import { standardsData, Standard } from "@/data/standards";
 
 const Search = () => {
@@ -16,7 +15,6 @@ const Search = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionRef = useRef<HTMLDivElement>(null);
 
-  // Example suggested queries
   const exampleQueries = [
     "What are the noise pollution norms?",
     "Energy efficiency standards for industries",
@@ -26,11 +24,9 @@ const Search = () => {
     "Green building certification requirements"
   ];
 
-  // Simple search algorithm that searches titles, tags, summaries and content
   const performSearch = (searchQuery: string) => {
     setIsSearching(true);
     
-    // Simulate API call with setTimeout
     setTimeout(() => {
       const normalizedQuery = searchQuery.toLowerCase().trim();
       
@@ -52,10 +48,9 @@ const Search = () => {
       
       setSearchResults(results);
       setIsSearching(false);
-    }, 500); // Simulate network delay
+    }, 500);
   };
 
-  // Generate suggestions based on input
   useEffect(() => {
     if (query.length > 2) {
       const filtered = exampleQueries.filter(item => 
@@ -69,7 +64,6 @@ const Search = () => {
     }
   }, [query]);
 
-  // Handle clicking outside suggestions box
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (suggestionRef.current && !suggestionRef.current.contains(event.target as Node)) {
@@ -131,7 +125,6 @@ const Search = () => {
               </Button>
             </div>
             
-            {/* Suggestions dropdown */}
             {showSuggestions && (
               <div 
                 ref={suggestionRef}
@@ -149,7 +142,6 @@ const Search = () => {
               </div>
             )}
             
-            {/* Example queries */}
             <div className="mt-3">
               <p className="text-sm text-[#616161] mb-2">Try searching for:</p>
               <div className="flex flex-wrap gap-2">
@@ -167,7 +159,6 @@ const Search = () => {
             </div>
           </div>
           
-          {/* Search results */}
           {isSearching ? (
             <div className="text-center py-12">
               <div className="animate-pulse flex flex-col items-center">
@@ -179,52 +170,107 @@ const Search = () => {
           ) : searchResults.length > 0 ? (
             <div className="space-y-6">
               <h2 className="text-xl font-semibold mb-4">
-                Found {searchResults.length} results
+                Found {searchResults.length} relevant standards
               </h2>
               
               {searchResults.map((result) => (
-                <Card key={result.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                <Card key={result.id} className="overflow-hidden hover:shadow-md transition-shadow border-l-4 border-l-eco-green">
                   <CardHeader className="bg-eco-background pb-2">
-                    <div className="flex justify-between items-start">
-                      <CardTitle className="text-xl">{result.title}</CardTitle>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <Bookmark className="h-4 w-4" />
-                      </Button>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-eco-textLight">
-                      <Badge variant="outline" className="bg-eco-green/10">
-                        {result.source}
-                      </Badge>
-                      <span className="flex items-center">
-                        <FileText className="h-3 w-3 mr-1" /> {result.category}
-                      </span>
-                      <span className="flex items-center">
-                        <Clock className="h-3 w-3 mr-1" /> {result.year}
-                      </span>
+                    <div className="flex justify-between items-start gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <FileText className="h-5 w-5 text-eco-green" />
+                          <CardTitle className="text-xl">{result.title}</CardTitle>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 text-sm text-eco-textLight">
+                          <Badge variant="outline" className="bg-eco-green/10 flex items-center gap-1">
+                            <Book className="h-3 w-3" />
+                            {result.source}
+                          </Badge>
+                          <Badge variant="outline" className="bg-eco-green/10 flex items-center gap-1">
+                            <FileText className="h-3 w-3" />
+                            {result.category}
+                          </Badge>
+                          <Badge variant="outline" className="bg-eco-green/10 flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {result.year}
+                          </Badge>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button variant="outline" size="sm" className="flex items-center gap-2">
+                          <Copy className="h-4 w-4" />
+                          Copy
+                        </Button>
+                        <Button variant="outline" size="sm" className="flex items-center gap-2">
+                          <Bookmark className="h-4 w-4" />
+                          Save
+                        </Button>
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-4">
-                    <p className="text-eco-textLight mb-3">{result.summary}</p>
-                    <div className="flex flex-wrap gap-1 mt-2">
-                      {result.tags.map((tag, index) => (
-                        <Badge key={index} variant="secondary" className="bg-eco-grey/10">
-                          {tag}
-                        </Badge>
-                      ))}
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-medium text-sm text-eco-textLight mb-1">Summary</h4>
+                        <p className="text-eco-text">{result.summary}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-sm text-eco-textLight mb-1">Keywords</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {result.tags.map((tag, index) => (
+                            <Badge key={index} variant="secondary" className="bg-eco-grey/10">
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="pt-2 flex justify-between items-center">
+                        <Button variant="link" className="p-0 h-auto text-eco-green">
+                          View full document
+                        </Button>
+                        <div className="flex items-center gap-2">
+                          <Button variant="ghost" size="sm" className="text-eco-textLight">
+                            Was this helpful?
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                    <Button variant="link" className="p-0 h-auto text-eco-green mt-2">
-                      View full document
-                    </Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
           ) : query && !isSearching ? (
-            <div className="text-center py-8 border rounded-lg bg-eco-background">
-              <h3 className="text-xl font-semibold mb-2">No results found</h3>
-              <p className="text-eco-textLight">
-                Try using different keywords or browse our document collection.
-              </p>
+            <div className="text-center py-8 space-y-4">
+              <div className="bg-eco-background rounded-lg p-8 border border-eco-green/20">
+                <Search className="h-12 w-12 text-eco-green/50 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">No matching standards found</h3>
+                <p className="text-eco-textLight max-w-md mx-auto">
+                  Try using different keywords, checking your spelling, or browsing our complete collection of standards.
+                </p>
+                <Button 
+                  variant="link" 
+                  className="mt-4 text-eco-green"
+                  onClick={() => setQuery("")}
+                >
+                  Clear search and try again
+                </Button>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm font-medium text-eco-textLight">Try these example searches:</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {exampleQueries.slice(0, 3).map((example, index) => (
+                    <Badge 
+                      key={index}
+                      variant="outline" 
+                      className="cursor-pointer hover:bg-eco-green/10"
+                      onClick={() => selectSuggestion(example)}
+                    >
+                      {example}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
             </div>
           ) : null}
         </div>
