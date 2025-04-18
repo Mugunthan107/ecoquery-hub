@@ -24,8 +24,8 @@ import { Search, Filter, ArrowUpDown } from "lucide-react";
 
 const Documents = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedSource, setSelectedSource] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedSource, setSelectedSource] = useState("all");
   const [sortConfig, setSortConfig] = useState<{
     key: keyof Standard;
     direction: 'ascending' | 'descending';
@@ -51,14 +51,14 @@ const Documents = () => {
     }
     
     // Apply category filter
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== "all") {
       filteredData = filteredData.filter(standard => 
         standard.category === selectedCategory
       );
     }
     
     // Apply source filter
-    if (selectedSource) {
+    if (selectedSource && selectedSource !== "all") {
       filteredData = filteredData.filter(standard => 
         standard.source === selectedSource
       );
@@ -102,8 +102,8 @@ const Documents = () => {
 
   const resetFilters = () => {
     setSearchQuery("");
-    setSelectedCategory("");
-    setSelectedSource("");
+    setSelectedCategory("all");
+    setSelectedSource("all");
     setSortConfig(null);
   };
   
@@ -134,7 +134,7 @@ const Documents = () => {
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem>
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
@@ -150,7 +150,7 @@ const Documents = () => {
                   <SelectValue placeholder="Source" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Sources</SelectItem>
+                  <SelectItem value="all">All Sources</SelectItem>
                   {sources.map((source) => (
                     <SelectItem key={source} value={source}>
                       {source}
